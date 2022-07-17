@@ -28,7 +28,7 @@ namespace LinqKoans.Lessons
             Microwavable result = (from x in ObjectsInMicrowave
                 where x.Name == "Ping Pong Ball"
                 select x).First();
-            Assert.AreEqual(___, result.Name);
+            Assert.AreEqual(expected: "Ping Pong Ball", result.Name);
         }
 
         [TestMethod]
