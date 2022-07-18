@@ -26,13 +26,13 @@ namespace LinqKoans.Lessons
         public void LinqResults()
         {
             Microwavable result = ObjectsInMicrowave.Where(x => x.Name == "Ping Pong Ball").First();
-            Assert.AreEqual(___, result.Name);
+            Assert.AreEqual("Ping Pong Ball", result.Name);
         }
 
         [TestMethod]
         public void LinqWhere()
         {
-            Microwavable result = ObjectsInMicrowave.Where(x => x.Name == ___).First();
+            Microwavable result = ObjectsInMicrowave.Where(x => x.Name == "CD").First();
             Assert.AreEqual("CD", result.Name);
         }
 
@@ -40,7 +40,7 @@ namespace LinqKoans.Lessons
         public void LinqSelect()
 
         {
-            Microwavable result = ObjectsInMicrowave.Where(oim => oim.Effect.Contains('S')).Select(oim => ____).First();
+            Microwavable result = ObjectsInMicrowave.Where(oim => oim.Effect.Contains('S')).Select(oim => oim).First();
             Assert.AreEqual("CD", result.Name);
         }
 
@@ -48,7 +48,7 @@ namespace LinqKoans.Lessons
         public void LinqSelectPiece()
 
         {
-            var result = ObjectsInMicrowave.Where(x => x.Name.StartsWith("Fire")).Select(x => x.___).First();
+            var result = ObjectsInMicrowave.Where(x => x.Name.StartsWith("Fire")).Select(x => x.Name).First();
             Assert.AreEqual("Firecrackers", result);
         }
 
@@ -56,8 +56,8 @@ namespace LinqKoans.Lessons
         public void LinqSelectPieces()
 
         {
-            var result = ObjectsInMicrowave.Where(x => x.Effect == "Glows").Select(x => new {x.Name, x.___}).First();
-            Assert.AreEqual("Glows", result.___);
+            var result = ObjectsInMicrowave.Where(x => x.Effect == "Glows").Select(x => new {x.Name, x.Effect}).First();
+            Assert.AreEqual("Glows", result.Effect);
             Assert.AreEqual("Light Bulbs", result.Name);
         }
 
@@ -65,7 +65,7 @@ namespace LinqKoans.Lessons
         public void TheLeastFun()
 
         {
-            var result = ObjectsInMicrowave.OrderBy(x => x.___).First();
+            var result = ObjectsInMicrowave.OrderBy(x => x.FunFactor).First();
             Assert.AreEqual("Boils", result.Effect);
         }
 
@@ -74,13 +74,13 @@ namespace LinqKoans.Lessons
 
         {
             var result = ObjectsInMicrowave.OrderByDescending(x => x.FunFactor).OrderByDescending(x => x.Name).First();
-            Assert.AreEqual(___, result.FunFactor);
+            Assert.AreEqual(1, result.FunFactor);
         }
 
         [TestMethod]
         public void MulitpleOrderBys()
         {
-            var result = ObjectsInMicrowave.OrderByDescending(x => x.FunFactor).ThenByDescending(x => x.___).First();
+            var result = ObjectsInMicrowave.OrderByDescending(x => x.FunFactor).ThenByDescending(x => x.Name).First();
             Assert.AreEqual(10, result.FunFactor);
             Assert.AreEqual("Twinkies", result.Name);
         }
@@ -94,7 +94,7 @@ namespace LinqKoans.Lessons
             {
                 Console.WriteLine(g.Key + ": " + String.Join(", ", g.Select(m => m.Name)));
             }
-            Assert.AreEqual(results.First().Key, ___);
+            Assert.AreEqual(results.First().Key, 0);
         }
 
         #region Ignore
