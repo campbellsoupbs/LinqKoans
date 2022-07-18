@@ -113,7 +113,7 @@ namespace LinqKoans.Lessons
             {
                 Console.WriteLine(g.Key + ": " + String.Join(", ", g.Select(m => m.Name)));
             }
-            Assert.AreEqual(results.First().Key, ___);
+            Assert.AreEqual(results.First().Key, 0);
         }
 
         #region Ignore
