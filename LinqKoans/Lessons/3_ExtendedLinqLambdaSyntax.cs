@@ -28,7 +28,7 @@ namespace LinqKoans.Lessons
         {
             var names = new[] {"Bert", "Ernie", "Kermet", "Grover", "Big Bird", "The Count"};
             var result = names.All(n => n[0].IsConsonant());
-            Assert.AreEqual(___, result);
+            Assert.AreEqual(false, result);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace LinqKoans.Lessons
                 return n[0].IsVowel();
             });
             Assert.AreEqual(true, result);
-            Assert.AreEqual(___, times);
+            Assert.AreEqual(2, times);
         }
 
 
@@ -55,7 +55,7 @@ namespace LinqKoans.Lessons
                 Console.WriteLine(n);
                 return n[0].IsVowel();
             });
-            Assert.AreEqual(___, result);
+            Assert.AreEqual(true, result);
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace LinqKoans.Lessons
         {
             var names = new[] {"Bert", "Ernie", "Kermet", "Grover"};
             var result = names.Average(n => n.Length);
-            Assert.AreEqual(___, result);
+            Assert.AreEqual(5.25, result);
         }
 
         [TestMethod]
@@ -71,14 +71,14 @@ namespace LinqKoans.Lessons
         {
             var numbers = new[] {3, 5, 7, 8, 9};
             var result = numbers.Aggregate("# ", (text, o) => text += " " + o);
-            Assert.AreEqual(___, result);
+            Assert.AreEqual("#  3 5 7 8 9", result);
         }
 
         [TestMethod]
         public void SumTotalMilesDriven()
         {
             var cars = CarsForSale;
-            var result = ___;
+            var result = cars.Sum(car => car.MilesDriven);
             Assert.AreEqual(315000, result);
         }
 
@@ -86,7 +86,7 @@ namespace LinqKoans.Lessons
         public void AveragePriceOfACar()
         {
             var cars = CarsForSale;
-            var result = ____;
+            var result = cars.Average(car => car.Price);
             Assert.AreEqual(16888.89, result, 0.01);
         }
 
@@ -94,7 +94,7 @@ namespace LinqKoans.Lessons
         public void BestMilesPerGallon()
         {
             var cars = CarsForSale;
-            var result = ___;
+            var result = cars.Max(car => car.MilesPerGallon);
             Assert.AreEqual(50, result);
         }
 
@@ -102,7 +102,7 @@ namespace LinqKoans.Lessons
         public void BestCarForMilesPerGallon()
         {
             var cars = CarsForSale;
-            var result = __;
+            var result = cars.Where(car => car.MilesPerGallon == 50).Select(car => car).First();
             Assert.AreEqual("Toyota Prius", result.Name);
         }
 
@@ -111,7 +111,7 @@ namespace LinqKoans.Lessons
         {
             // Hint (use take and skip)
             var cars = CarsForSale;
-            var result = _____;
+            var result = cars.Skip(2).Take(3);
             Assert.AreEqual("Toyota Prius,Ford Mustang,Saturn,", result.Aggregate("", (a, b) => a += b.Name + ","));
         }
 
