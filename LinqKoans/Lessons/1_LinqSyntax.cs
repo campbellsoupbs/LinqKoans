@@ -28,35 +28,33 @@ namespace LinqKoans.Lessons
             Microwavable result = (from x in ObjectsInMicrowave
                 where x.Name == "Ping Pong Ball"
                 select x).First();
-            Assert.AreEqual(expected: "Ping Pong Ball", result.Name);
+            Assert.AreEqual("Ping Pong Ball", result.Name);
         }
 
         [TestMethod]
         public void LinqWhere()
         {
             Microwavable result = (from x in ObjectsInMicrowave
-                where x.Name == ___
+                where x.Name == "CD"
                 select x).First();
             Assert.AreEqual("CD", result.Name);
         }
 
         [TestMethod]
         public void LinqSelect()
-
         {
             Microwavable result = (from oim in ObjectsInMicrowave
                 where oim.Effect.Contains('S')
-                select ____).First();
+                select oim).First();
             Assert.AreEqual("CD", result.Name);
         }
 
         [TestMethod]
         public void LinqSelectPiece()
-
         {
             var result = (from x in ObjectsInMicrowave
                 where x.Name.StartsWith("Fire")
-                select x.___).First();
+                select x.Name).First();
             Assert.AreEqual("Firecrackers", result);
         }
 
@@ -66,8 +64,8 @@ namespace LinqKoans.Lessons
         {
             var result = (from x in ObjectsInMicrowave
                 where x.Effect == "Glows"
-                select new {x.Name, x.___}).First();
-            Assert.AreEqual("Glows", result.___);
+                select new {x.Name, x.Effect}).First();
+            Assert.AreEqual("Glows", result.Effect);
             Assert.AreEqual("Light Bulbs", result.Name);
         }
 
@@ -76,7 +74,7 @@ namespace LinqKoans.Lessons
 
         {
             var result = (from x in ObjectsInMicrowave
-                orderby x.___ ascending
+                orderby x.FunFactor ascending
                 select x
             ).First();
             Assert.AreEqual("Boils", result.Effect);
@@ -90,14 +88,14 @@ namespace LinqKoans.Lessons
                 orderby x.FunFactor descending
                 orderby x.Name descending
                 select x).First();
-            Assert.AreEqual(___, result.FunFactor);
+            Assert.AreEqual(1, result.FunFactor);
         }
 
         [TestMethod]
         public void MulitpleOrderBys()
         {
             var result = (from x in ObjectsInMicrowave
-                orderby x.FunFactor descending, x.___ descending
+                orderby x.FunFactor descending, x.Name descending
                 select x).First();
             Assert.AreEqual(10, result.FunFactor);
             Assert.AreEqual("Twinkies", result.Name);
